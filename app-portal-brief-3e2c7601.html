@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>信息卡片 — 稳定入口与页面说明 · 竞彩网</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f7f5f1;
+      color: #1f2933;
+      line-height: 1.7;
+    }
+
+    /* 深色头图 Hero */
+    .hero {
+      background: linear-gradient(145deg, #0b1a2b 0%, #1a2f44 100%);
+      color: #f0ede8;
+      padding: 4.5rem 1.5rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #e6b422;
+      opacity: 0.5;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 640px;
+      margin: 0 auto;
+      opacity: 0.8;
+      font-weight: 300;
+    }
+
+    /* 浅色正文区 */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* 信息卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (min-width: 600px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .card .emoji {
+      font-size: 2.2rem;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.3px;
+      color: #1e2c3a;
+    }
+
+    .card p {
+      font-size: 0.98rem;
+      color: #374151;
+    }
+
+    /* 适合人群卡片 (占两列) */
+    .card-wide {
+      grid-column: 1 / -1;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .card-wide h3 {
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: #1e2c3a;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .audience-tags span {
+      background: #f3efe9;
+      padding: 0.4rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #2c3e50;
+      display: inline-block;
+    }
+
+    /* 自然链接段落 */
+    .link-section {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      margin-top: 0.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .link-section p {
+      font-size: 1rem;
+      color: #2d3c4b;
+      margin-bottom: 1rem;
+    }
+
+    .link-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 强调色用于链接 */
+    a {
+      color: #c17b1e;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s, border-bottom 0.2s;
+      border-bottom: 1px solid transparent;
+    }
+
+    a:hover {
+      color: #8a5c14;
+      border-bottom-color: #c17b1e;
+    }
+
+    /* FAQ 摘要风格 */
+    .faq-mini {
+      margin: 2rem 0 1.5rem;
+      padding: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e2dbd1;
+      padding: 1.2rem 0;
+    }
+
+    .faq-item:first-child {
+      padding-top: 0;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1f2d3a;
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      font-size: 0.95rem;
+      color: #4a5b6b;
+    }
+
+    .footnote {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: #6f7f8e;
+      text-align: center;
+      border-top: 1px solid #e2dbd1;
+      padding-top: 2rem;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .card, .card-wide {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>信息入口 · 稳定与清晰</h1>
+    <p>从一处熟悉的页面开始，了解竞彩服务的整体面貌与用途。</p>
+  </header>
+
+  <!-- 主内容区 浅色背景 -->
+  <main class="container">
+
+    <!-- 主视觉 / 用途卡片 -->
+    <div class="card-grid">
+      <div class="card">
+        <div class="emoji">📋</div>
+        <h3>页面定位</h3>
+        <p>作为一个整理好的入口，这里集中展示了竞彩相关的基本信息与用途说明，方便新朋友快速了解整体轮廓，也适合日常回看。</p>
+      </div>
+
+      <div class="card">
+        <div class="emoji">🔗</div>
+        <h3>稳定入口</h3>
+        <p>无需频繁切换渠道，从同一个地址就能接触赛事资讯与平台动态。页面结构简单、直接，省去多余跳转步骤。</p>
+      </div>
+
+      <div class="card">
+        <div class="emoji">🧭</div>
+        <h3>用途说明</h3>
+        <p>每一张卡片都对应一个实际场景：查看最新信息、了解规则变化、寻找常见问题解答。信息层级经过梳理，减少盲目搜索的时间。</p>
+      </div>
+
+      <div class="card">
+        <div class="emoji">⚙️</div>
+        <h3>浏览体验</h3>
+        <p>采用浅色主调与柔和阴影，文字大小适合长时间阅读。卡片在鼠标悬停时有轻微抬升，视觉反馈清晰但不打扰。</p>
+      </div>
+    </div>
+
+    <!-- 适合人群 - 宽卡片 -->
+    <div class="card-wide">
+      <h3><span>🧑‍🤝‍🧑</span> 适合哪些朋友</h3>
+      <div class="audience-tags">
+        <span>日常关注赛事的爱好者</span>
+        <span>寻找信息集中页的用户</span>
+        <span>初次接触竞彩的新朋友</span>
+        <span>希望减少搜索步骤的访客</span>
+        <span>偏好简约界面风格的人</span>
+      </div>
+      <p style="margin-top: 1.2rem; color: #3a4c5e;">无论你是刚听说这个领域，还是已经有一定经验，这个页面都尝试以平实的方式提供一份可翻阅的参考。</p>
+    </div>
+
+    <!-- 自然链接段落 -->
+    <div class="link-section">
+      <p>如果你希望直接从源头获取信息，可以选择访问 <a href="https://app-portal-sporttery.com">竞彩网</a>。那里整合了更完整的赛事数据与官方说明内容，适合需要深入了解的用户。</p>
+      <p>页面本身保持轻量，没有复杂的导航层级，也不收集不必要的个人信息。每次打开都能看到一致的结构——这既是设计的初衷，也是一种稳定的使用体验。</p>
+      <p>另外，如果你在寻找某个特定功能或规则说明，不妨先翻阅下面摘录的常见问题，也许能帮你节省一点时间。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <div class="faq-item">
+        <div class="faq-q">❓ 这个页面和竞彩网是什么关系？</div>
+        <div class="faq-a">它是一个信息介绍与入口性质的页面，指向 <a href="https://app-portal-sporttery.com">竞彩网</a> 主站，帮助访客在访问前对内容有一个大致预期。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">❓ 需要注册或登录才能浏览吗？</div>
+        <div class="faq-a">不需要。本页面及所链接的 <a href="https://app-portal-sporttery.com">竞彩网</a> 公开部分均无需登录即可查看，仅部分功能可能需要身份验证。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">❓ 页面会频繁改版吗？</div>
+        <div class="faq-a">设计上尽量保持稳定，但会跟随主站的内容更新做适当调整。你可以把此页当作一个长期可用的参考索引。</div>
+      </div>
+    </div>
+
+    <div class="footnote">
+      — 信息卡片式介绍 · 稳定入口 —
+    </div>
+
+  </main>
+
+</body>
+</html>
